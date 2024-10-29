@@ -31,6 +31,8 @@ dependencies:
   fluttertoast: ^8.2.4
   get: ^4.6.6
   shared_preferences: ^2.2.2
+  fl_chart: ^0.35.0
+  flutter_colorpicker: ^1.0.3
   
   
 

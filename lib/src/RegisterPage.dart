@@ -163,32 +163,95 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff1D1E33),
       appBar: AppBar(
         title: Text('Register'),
+        backgroundColor: const Color(0xff1D1E33),
       ),
-      body: Center(
+      body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildTextField(_firstNameController, 'First Name'),
-              _buildTextField(_lastNameController, 'Last Name'),
-              _buildTextField(_emailController, 'Email',
-                  keyboardType: TextInputType.emailAddress),
-              _buildTextField(_usernameController, 'Username'),
-              _buildTextField(_passwordController, 'Password',
-                  isPassword: true),
-              _buildTextField(_confirmPasswordController, 'Confirm Password',
-                  isPassword: true),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _register,
-                child: Text('Register'),
-              ),
-            ],
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 40),
+                Image.asset(
+                  'assets/images/energy_effix_logo.png',
+                  width: 100,
+                  height: 95,
+                  fit: BoxFit.cover,
+                ),
+                Image.asset(
+                  'assets/images/energy_effix_logo_text.png',
+                  width: 210,
+                  height: 22,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(height: 40),
+                _buildTextField(_firstNameController, 'First Name'),
+                _buildTextField(_lastNameController, 'Last Name'),
+                _buildTextField(_emailController, 'Email',
+                    keyboardType: TextInputType.emailAddress),
+                _buildTextField(_usernameController, 'Username'),
+                _buildTextField(_passwordController, 'Password',
+                    isPassword: true),
+                _buildTextField(_confirmPasswordController, 'Confirm Password',
+                    isPassword: true),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () => _register(),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32)),
+                    padding: const EdgeInsets.all(0),
+                    minimumSize: const Size(160, 45),
+                    maximumSize: const Size(260, 45),
+                  ),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xea19b6d6).withOpacity(1),
+                          Colors.white,
+                        ],
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Register',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xff1D1E33),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInPage()),
+                    );
+                  },
+                  child: Text(
+                    'Already have an account? Sign In',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

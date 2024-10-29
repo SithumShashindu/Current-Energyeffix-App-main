@@ -38,12 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Navigator.pushNamed(
               context,
               '/profile',
-              arguments: Profile(
-                userID: 123456,
-                emailAddress: 'example@example.com',
-                contactNumber: '123-456-7890',
-                points: 200,
-              ),
+              arguments: Profile(),
             );
           },
           icon: Icon(Icons.account_circle),
@@ -70,7 +65,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).pop(); // This line pops the current route
+                  Navigator.of(context)
+                      .pop(); // This line pops the current route
                 },
                 icon: Icon(Icons.arrow_back_ios_new_rounded),
                 color: Colors.white,
@@ -99,6 +95,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize =>
-      new Size.fromHeight(appBar.preferredSize.height);
+  Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
 }

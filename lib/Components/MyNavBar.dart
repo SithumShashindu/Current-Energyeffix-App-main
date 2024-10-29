@@ -34,7 +34,7 @@ class _MyNavBarState extends State<MyNavBar> {
       case 0:
         return Home();
       case 1:
-        return Home();
+        return MyHomePage();
       case 2:
         return Goal();
       case 3:

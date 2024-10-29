@@ -1,4 +1,5 @@
 // custom_app_bar.dart
+import 'package:energyeffix_app/Profile.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -54,7 +55,7 @@ class CustomAppBar extends StatelessWidget {
           iconSize: 33,
         ),
         IconButton(
-          onPressed: null,
+          onPressed:null,
           icon: Icon(Icons.account_circle),
           color: Colors.white,
           tooltip: "Top Navigation Bar Profile Icon",

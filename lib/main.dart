@@ -1,10 +1,15 @@
 import 'package:energyeffix_app/Components/MyDrawer.dart';
 import 'package:energyeffix_app/About.dart';
 import 'package:energyeffix_app/Goal.dart';
+import 'package:energyeffix_app/Help.dart';
 import 'package:energyeffix_app/Profile.dart';
 import 'package:energyeffix_app/SettingsPage.dart';
+import 'package:energyeffix_app/src/api_connection.dart';
+import 'package:energyeffix_app/src/current_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:energyeffix_app/src/RegisterPage.dart';
+import 'package:get/get.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
@@ -34,12 +39,16 @@ void main() {
 }
 
 class EnergyEffixApp extends StatelessWidget {
+  final CurrentUser _currentUser = Get.put(CurrentUser());
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'EnergyEffix',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.indigo,
       ),
       initialRoute: '/',
       routes: {
@@ -53,7 +62,7 @@ class EnergyEffixApp extends StatelessWidget {
 
         //'/goal_test': (context) => GoalTest(),
 
-        //'/analytics': (context) => Analytics(),
+        '/analytics': (context) => MyHomePage(),
         '/bill': (context) => Bill(
               month: 'March',
               unitsUsed: 100,
@@ -73,20 +82,17 @@ class EnergyEffixApp extends StatelessWidget {
         '/manualentry': (context) => ManualEntry(),
 
         '/mydrawer': (context) => MyDrawer(
-              userName: "Ridma Palansuriya",
-              userId: "12345678",
+              userName: _currentUser.user.usersUId,
+              userId: _currentUser.user.usersFName,
               points: 2000,
             ),
 
         '/about': (context) => About(),
         '/settings': (context) => SettingsPage(),
+        '/Help': (context) => Help(),
 
-        '/profile': (context) => Profile(
-              userID: 123456,
-              emailAddress: 'example@example.com',
-              contactNumber: '123-456-7890',
-              points: 200,
-            ),
+        '/profile': (context) => Profile(),
+
         // '/notification': (context) => Notification,
 
 //     navigatorObservers: [RouteObserverProvider()],
@@ -99,12 +105,10 @@ class EnergyEffixApp extends StatelessWidget {
 
       onGenerateRoute: (settings) {
         if (settings.name == '/devices') {
-          // Return a MaterialPageRoute for the DevicesScreen
           return MaterialPageRoute(
             builder: (context) => DevicesScreen(),
           );
         }
-        // Handle other routes here...
       },
 
       onUnknownRoute: (settings) {
@@ -113,7 +117,6 @@ class EnergyEffixApp extends StatelessWidget {
           builder: (context) => NotFoundScreen(),
         );
       },
-      // Other MaterialApp properties...
     );
   }
 }

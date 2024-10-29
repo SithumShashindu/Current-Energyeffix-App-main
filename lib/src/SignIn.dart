@@ -6,7 +6,6 @@ import 'User.dart';
 import 'api_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-//import '../Home.dart';
 import 'user_preferences.dart';
 
 class SignInPage extends StatefulWidget {
@@ -17,6 +16,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   bool _passwordVisible = false;
 
   void signIn() async {
@@ -24,6 +24,7 @@ class _SignInPageState extends State<SignInPage> {
       var res = await http.post(
         Uri.parse(API.signIn),
         body: {
+          'usersEmail': emailController.text.trim(),
           'usersUId': userNameController.text.trim(),
           'usersPwd': passwordController.text.trim(),
         },

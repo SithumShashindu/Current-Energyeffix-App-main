@@ -29,9 +29,11 @@ class _ChallengeCreationPageState extends State<ChallengeCreationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(appBar: AppBar(
-        toolbarHeight: 120,
-      ), title: "Custom Goal"),
+      appBar: CustomAppBar(
+          appBar: AppBar(
+            toolbarHeight: 120,
+          ),
+          title: "Custom Goal"),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
